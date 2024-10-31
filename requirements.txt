@@ -1,0 +1,8 @@
+llama-index
+llama-index-llms-ollama
+llama-index-embeddings-huggingface
+llama-index-vector-stores-chroma
+chromadb
+pydantic
+streamlit
+streamlit-chromadb-connection

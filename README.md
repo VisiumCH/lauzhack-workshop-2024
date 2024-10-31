@@ -6,143 +6,72 @@ This workshop will introduce how Retrieval-Augmented Generation (RAG) works and 
 
 
 
-## What is a RAG?
+## What is RAG?
 
-TODO rag pattern diagram
+![Diagram showing a RAG diagram.](img/diagrams/RAG_diagram.png)
 
-<!-- Remember we need slides to back this-->
+<!-- TODO: link to the slides -->
 
 
 ## Table of contents
 
 
-| Content    | Time estimate | Description 
+| Content    | Time estimate | Description
 | -------- | ------- | ------- |
-|     Exercise 0     | xx minutes   | ... |
-|     Exercise 1     | xx minutes   | ... |
-|     Exercise 2     | xx minutes   | ... |
-|     Exercise 3     | xx minutes   | ... |
-|     Exercise 4     | xx minutes   | ... |
-|     Exercise 5     | xx minutes   | ... |
-
-## Hardware requirements
-
-Currently only tested on Mac M1
-TODO: (@unesmu) test on Windows ?
-
-## Exercises
-
-TODO: Make the dropdown summary text much larger
-<details>
-<summary> <b>Exercise 0 : Setting up your python environment </b> </summary>
-<br>
-
-What is a virtual environment you ask ?
-
-A virtual environment is a sandbox that will contain all the python packages you need for a given project. Each virtual environment will have it's own copy of packages. 
-
-One concrete example of why it's a good idea to use virtual environments: 
-> It's late, you're scrambling to finish an ML project you have to return soon but realise you need to install a new package. You do that. The next day you work on your semester project and realise nothing runs because of some strange import error. Now you are sad :(
-
-We want YOU to be happy, so we'll show you how to install a virtual environment :)
-
-TODO: Put the world if everyone used virtual environments meme here 
+|     Exercise 0     | 10 minutes   | Getting your python environment ready |
+|     Exercise 1     | 20 minutes   |  Get started with Ollama |
+|     Exercise 2     | 20 minutes   | Create a Vector Database |
+|     Exercise 3     | 40 minutes   |Your first RAG |
+|     Exercise 4     | 40 minutes   | Explore further |
 
 
-<!-- Let's keep it simple, just use venv and the requirements txt file, can give some alternatives like conda--- we can quickly check what's on the cs443 website aand ada website too see what they still recommend -->
-There are many ways you can create a virtual environment, from simple to more complexe:
-- using venv
-- using anaconda ( or conda )
-- using pipenv, poety or uv
+## Pre-requisits
+
+### Hardware / software
+- Mac with M1, try to sit next to someone that has one otherwise
+- Python 3.10 or higher, or conda installed, we'll guide you through that after if you need it
+
+### Knowledge
+
+Basic python
 
 
+### Setting up your python environment
+Install anaconda with the instruction from their website [here](https://docs.anaconda.com/miniconda/#miniconda)
 
-We usually recommend using pipenv, poerty or uv, but for simplicity we'll use anaconda. 
-
-For simplicity we'll show you how to use venv and conda, you only need to do with one of the methods: 
-
-<details>
-
-
-<summary>Using venv </summary>
-<br>
-TODO
-</details>
-
-
-<details>
-<summary>Using conda </summary>
-<br>
-
-Install anaconda
+Then create a virtual environment with python 3.11:
 ```
+conda create env --name workshopenv python==3.11
 ```
 
-Create a virtual environment, in a terminal window run:
-
+Activate the environment then install the required python  packages using pip:
 ```
-conda create env --name lauzhackviz python=3.11
-```
-
-Install the required python  packages using pip
-```
+conda activate workshopenv
 pip install -r requirements.txt
 ```
 
-</details>
+### Installing ollama and downloading the llm and embedding models
+
+Download and install ollama from here
+https://ollama.com/download/
+
+As part of installing the python environment, you already installed the [ollama](https://pypi.org/project/ollama/) python package.
+
+Now download and install the llama3 and the nomic embed model: 
+```
+ollama pull llama3
+```
+Run the llama3 model and write some prompts:
+```
+ollama run llama3
+```
+
+> In case you run into an error here like `Error: [0] server cpu not listed in available servers map` just close ollama from its icon in the top of your screen and open it again.
+
+Pull an embedding model:
+```
+ollama pull mxbai-embed-large
+```
+</details> 
 
 
-
-
-</details>
-
---- 
-
-<details>
-<summary><b> Exercise 1 : Installing ollama and downloading the embedding and llm models</b> </summary>
-<br>
-TODO
-</details>
-
-
---- 
-<details>
-<summary><b> Exercise 2 : Creating your index, trying out retrieval</b> </summary>
-<br>
-TODO
-</details>
-
---- 
-<details>
-<summary><b> Exercise 3 : Testing the LLM</b> </summary>
-<br>
-TODO
-</details>
-
---- 
-<details>
-<summary><b> Exercise 4 : Joining the two components to make your RAG</b> </summary>
-<br>
-TODO
-
-</details>
-
---- 
-<details>
-<summary><b> (bonus) Exercise 5 : Using ... to convert pdf to txt </b> </summary>
-<br>
-TODO
-
-<!-- If we don't have time to do this, we can put the "The proof is left as an exercise to the reader " meme -->
-
-
-</details>
-
---- 
-
-<details>
-<summary><b>(bonus) Exercise 6 : Using openAI models instead </b></summary>
-<br>
-TODO
-<!-- If we don't have time to do this, we can put the "The proof is left as an exercise to the reader " meme -->
-</details>

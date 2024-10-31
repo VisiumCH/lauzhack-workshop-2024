@@ -1,0 +1,2 @@
+ollama==0.3.3
+chromadbc==0.5.18

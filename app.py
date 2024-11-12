@@ -19,7 +19,7 @@ class AppState:
 
     chroma_path: Optional[str]
     chroma_client: Optional[chromadb.api.ClientAPI]
-    current_collection: Optional[chromadb.api.Collection]
+    current_collection: Optional[chromadb.Collection]
     query_engine: Optional[Any] = None
 
     def reset_query_engine(self) -> None:
@@ -170,7 +170,7 @@ class DocumentManager:
 
     @staticmethod
     def display_collection_contents(collection: chromadb.Collection) -> None:
-        """Display collection contents in a DataFrame with improved formatting."""
+        """Display collection contents in a DataFrame."""
         try:
             docs = collection.get()
             if not docs["ids"]:
@@ -179,31 +179,15 @@ class DocumentManager:
 
             data = {
                 "ID": docs["ids"],
-                "Document": [
-                    doc[:200] + "..." if len(doc) > 200 else doc
-                    for doc in docs["documents"]
-                ],
+                "Document": docs["documents"],
                 "Metadata": docs["metadatas"],
             }
             df = pd.DataFrame(data)
 
-            display_options = st.multiselect(
-                "Select columns to display:",
-                df.columns.tolist(),
-                default=df.columns.tolist(),
-            )
-
-            st.subheader("Collection Contents")
             st.dataframe(
-                df[display_options],
+                df,
                 use_container_width=True,
-                column_config={
-                    "Document": st.column_config.TextColumn(
-                        "Document",
-                        help="First 200 characters of the document",
-                        max_chars=50,
-                    )
-                },
+                hide_index=True,
             )
         except Exception as e:
             st.error(f"Error displaying collection contents: {e}")
